@@ -10,7 +10,7 @@ namespace KMA.ProgrammingInCSharp2019.KonoshenkoLab01
         internal BirthDateControl()
         {
             InitializeComponent();
-            //DataContext = new 
+            DataContext = new BirthDateViewModel();
         }
     }
 }

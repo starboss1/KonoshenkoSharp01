@@ -1,5 +1,4 @@
 ﻿
-
 using System;
 
 namespace KMA.ProgrammingInCSharp2019.KonoshenkoLab01
@@ -11,8 +10,8 @@ namespace KMA.ProgrammingInCSharp2019.KonoshenkoLab01
             "Dragon","Snake","Horse","Goat","Monkey","Rooster","Dog","Pig"
         };
 
-        private static readonly string[] WesternZodiaсList = {"Ram","Bull","Twins","Crab",
-            "Lion","Virgin","Scales","Scorpion","Archer","Mountain Sea-Goat","Water Bearer","Fish"
+        private static readonly string[] WesternZodiaсList = {"Aries","Taurus","Gemini","Cancer",
+            "Leo","Virgo","Libra","Scorpio","Sagittarius","Capricorn","Aquarius","Pisces"
         };
 
         private DateTime _birthDate;
@@ -40,7 +39,71 @@ namespace KMA.ProgrammingInCSharp2019.KonoshenkoLab01
                 {
                     Age = diffYears > 0 ? $"{diffYears} years" : $"{diffDateTime} days";
                     ChineseZodiac = ChineseZodiaсList[(_birthDate.Year + 8) % 12];
+
+                    var month = _birthDate.Month;
+                    var day = _birthDate.Day;
+                    int numberWesterZodiac;
+
+                    switch (month)
+                    {
+                        case 1:
+                            numberWesterZodiac = day <= 20 ? 9 : 10;
+                            break;
+                        case 2:
+                            numberWesterZodiac = day <= 19 ? 10 : 11;
+                            break;
+                        case 3:
+                            numberWesterZodiac = day <= 20 ? 11 : 0;
+                            break;
+                        case 4:
+                            numberWesterZodiac = day <= 20 ? 0 : 1;
+                            break;
+                        case 5:
+                            numberWesterZodiac = day <= 20 ? 1 : 2;
+                            break;
+                        case 6:
+                            numberWesterZodiac = day <= 20 ? 2 : 3;
+                            break;
+                        case 7:
+                            numberWesterZodiac = day <= 21 ? 3 : 4;
+                            break;
+                        case 8:
+                            numberWesterZodiac = day <= 22 ? 4 : 5;
+                            break;
+                        case 9:
+                            numberWesterZodiac = day <= 21 ? 5 : 6;
+                            break;
+                        case 10:
+                            numberWesterZodiac = day <= 21 ? 6 : 7;
+                            break;
+                        case 11:
+                            numberWesterZodiac = day <= 21 ? 7 : 8;
+                            break;
+                        case 12:
+                            numberWesterZodiac = day <= 21 ? 8 : 9;
+                            break;
+                        default: // no way to be here
+                            numberWesterZodiac = 0;
+                            break;
+                    }
+
+                    WesternZodiac = WesternZodiaсList[numberWesterZodiac];
                 }
+                else
+                {
+                    Age = "";
+                    ChineseZodiac = "";
+                    WesternZodiac = "";
+                }
+            }
+        }
+
+        public bool IsBirthday
+        {
+            get
+            {
+                var today = DateTime.Today;
+                return today.Month == _birthDate.Month && today.Day == _birthDate.Day;
             }
         }
     }

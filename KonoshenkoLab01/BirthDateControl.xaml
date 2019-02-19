@@ -8,7 +8,7 @@
     <Grid Name="MainGrid">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"></RowDefinition>
-            <RowDefinition Height="50"></RowDefinition>
+            <RowDefinition Height="30"></RowDefinition>
             <RowDefinition Height="Auto"></RowDefinition>
             <RowDefinition Height="25"></RowDefinition>
             <RowDefinition Height="25"></RowDefinition>
@@ -16,12 +16,11 @@
         </Grid.RowDefinitions>
 
         <Label Content="Your date of birth: "></Label>
-        <DatePicker FirstDayOfWeek="Monday" SelectedDate="" Grid.Row="1"></DatePicker>
-        <Button Content="Calculate" Grid.Row="2"></Button>
+        <DatePicker FirstDayOfWeek="Monday" SelectedDate="{Binding BirthDate, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Grid.Row="1"></DatePicker>
 
-        <TextBlock Grid.Row="3"></TextBlock>
-        <TextBlock Grid.Row="4"></TextBlock>
-        <TextBlock Grid.Row="5"></TextBlock>
+        <TextBlock Grid.Row="2" Text="{Binding Age, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"></TextBlock>
+        <TextBlock Grid.Row="3" Text="{Binding ChineseZodiac, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"></TextBlock>
+        <TextBlock Grid.Row="4" Text="{Binding WesternZodiac, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"></TextBlock>
 
     </Grid>
 </UserControl>
