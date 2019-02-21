@@ -37,7 +37,7 @@ namespace KMA.ProgrammingInCSharp2019.KonoshenkoLab01
                 Valid = diffDateTime.Days >= 0 && diffYears <= 135 ;
                 if (Valid)
                 {
-                    Age = diffYears > 0 ? $"{diffYears} years" : $"{diffDateTime} days";
+                    Age = diffYears > 0 ? $"{diffYears} years" : $"{diffDateTime.ToString().Substring(0,diffDateTime.ToString().IndexOf("."))} days";
                     ChineseZodiac = ChineseZodiaсList[(_birthDate.Year + 8) % 12];
 
                     var month = _birthDate.Month;
@@ -46,40 +46,40 @@ namespace KMA.ProgrammingInCSharp2019.KonoshenkoLab01
 
                     switch (month)
                     {
-                        case 1:
+                        case 1: // Jan
                             numberWesterZodiac = day <= 20 ? 9 : 10;
                             break;
-                        case 2:
+                        case 2: //Feb
                             numberWesterZodiac = day <= 19 ? 10 : 11;
                             break;
-                        case 3:
+                        case 3: //March
                             numberWesterZodiac = day <= 20 ? 11 : 0;
                             break;
-                        case 4:
+                        case 4: //Apr
                             numberWesterZodiac = day <= 20 ? 0 : 1;
                             break;
-                        case 5:
+                        case 5: //May
                             numberWesterZodiac = day <= 20 ? 1 : 2;
                             break;
-                        case 6:
+                        case 6: //June
                             numberWesterZodiac = day <= 20 ? 2 : 3;
                             break;
-                        case 7:
+                        case 7: //Jule
                             numberWesterZodiac = day <= 21 ? 3 : 4;
                             break;
-                        case 8:
+                        case 8: //August
                             numberWesterZodiac = day <= 22 ? 4 : 5;
                             break;
-                        case 9:
+                        case 9: //Sep
                             numberWesterZodiac = day <= 21 ? 5 : 6;
                             break;
-                        case 10:
+                        case 10: //Oct
                             numberWesterZodiac = day <= 21 ? 6 : 7;
                             break;
-                        case 11:
+                        case 11: //Nov
                             numberWesterZodiac = day <= 21 ? 7 : 8;
                             break;
-                        case 12:
+                        case 12: //Dec
                             numberWesterZodiac = day <= 21 ? 8 : 9;
                             break;
                         default: // no way to be here
