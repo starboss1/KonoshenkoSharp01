@@ -3,9 +3,13 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:fa="http://schemas.fontawesome.io/icons/"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
-    <Grid Name="MainGrid">
+             d:DesignHeight="450" d:DesignWidth="800"
+             
+             >
+
+    <Grid Name="MainGrid" IsEnabled="{Binding IsControlEnabled, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}">
         <Grid.Background>
             <RadialGradientBrush GradientOrigin="0.5,0.5">
                 <GradientStop Color="Blue" Offset="0" />
@@ -18,7 +22,7 @@
             <RowDefinition Height="30"></RowDefinition>
             <RowDefinition Height="30"></RowDefinition>
             <RowDefinition Height="30"></RowDefinition>
-            <RowDefinition Height="30"></RowDefinition>
+            <RowDefinition Height="80"></RowDefinition>
         </Grid.RowDefinitions>
 
         <Label FontSize="16" FontStyle="Italic" Content="Your date of birth: "></Label>
@@ -27,6 +31,7 @@
         <TextBlock FontSize="16" FontStyle="Italic" Grid.Row="2" Text="{Binding Age, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"></TextBlock>
         <TextBlock Grid.Row="3" FontSize="16" FontStyle="Italic" Text="{Binding ChineseZodiac, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"></TextBlock>
         <TextBlock Grid.Row="4" FontSize="16" FontStyle="Italic" Text="{Binding WesternZodiac, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"></TextBlock>
+        <fa:ImageAwesome Visibility="{Binding LoaderVisibility, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" Icon="Refresh" Grid.Row="7" Width="50" Height="50" Spin="True"></fa:ImageAwesome>
 
     </Grid>
 </UserControl>

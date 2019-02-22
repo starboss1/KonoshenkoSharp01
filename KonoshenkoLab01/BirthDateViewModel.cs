@@ -2,12 +2,32 @@
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Windows;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace KMA.ProgrammingInCSharp2019.KonoshenkoLab01
 {
     internal class BirthDateViewModel: INotifyPropertyChanged
     {
+        public Visibility LoaderVisibility { get; set; }
+        private bool _isControlEnabled = true;
+        public bool IsControlEnabled
+        {
+            get { return _isControlEnabled; }
+            set
+            {
+                _isControlEnabled = value;
+                OnPropertyChanged();
+            }
+        }
         private readonly BirthDateModel _birthDateModel = new BirthDateModel();
+
+        public BirthDateViewModel()
+        {
+            LoaderVisibility = Visibility.Hidden;
+            OnPropertyChanged("LoaderVisibility");
+
+        }
 
         public DateTime BirthDate
         {
@@ -15,6 +35,7 @@ namespace KMA.ProgrammingInCSharp2019.KonoshenkoLab01
 
             set
             {
+                ChangeVisibility();
                 _birthDateModel.BirthDate = value;
                 if (!_birthDateModel.Valid)
                 {
@@ -25,11 +46,25 @@ namespace KMA.ProgrammingInCSharp2019.KonoshenkoLab01
                     MessageBox.Show("Happy birthday!!! Vy staly na rik starishym =)(Za smailik sorri)");
                 }
                 OnPropertyChanged();
-                OnPropertyChanged(nameof(Age));
-                OnPropertyChanged(nameof(ChineseZodiac));
-                OnPropertyChanged(nameof(WesternZodiac));
+                OnPropertyChanged("Age");
+                OnPropertyChanged("ChineseZodiac");
+                OnPropertyChanged("WesternZodiac");
                 
             }
+        }
+
+        private async void ChangeVisibility()
+        {
+            
+            LoaderVisibility = Visibility.Visible;
+            OnPropertyChanged("LoaderVisibility");
+            IsControlEnabled = false;
+            OnPropertyChanged("IsControlEnabled");
+            await Task.Run(() => Thread.Sleep(3000));
+            IsControlEnabled = true;
+            OnPropertyChanged("IsControlEnabled");
+            LoaderVisibility = Visibility.Hidden;
+            OnPropertyChanged("LoaderVisibility");
         }
 
         protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
